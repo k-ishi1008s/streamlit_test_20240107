@@ -1,5 +1,6 @@
 import streamlit as st
 import time
+from PIL import Image
 
 st.title('Streamlit 超入門')
 
@@ -16,10 +17,7 @@ for i in range(100):
 
 'Done!!'
 
-left_column, right_column = st.columns(2) #pythonのバージョンが古すぎてbeta_columnsをcolumnsにした
-button = left_column.button('右カラムに文字を表示')
-if button:
-    right_column.write('ここは右カラム')
+
 
 
 expander = st.expander('問い合わせ')
@@ -33,7 +31,7 @@ expander.write('問い合わせ内容を書く')
 #'あなたの趣味：' , text ,'です'
 #'コンディション：',condition
 
-#if st.checkbox('show Image'):
-#    img = Image.open('./images/1.png')
-#   st.image(img, caption='ちいかわ', use_column_width=False)
+if st.checkbox('show Image'):
+    img = Image.open('./images/1.png')
+    st.image(img, caption='ちいかわ', use_column_width=False)
 
