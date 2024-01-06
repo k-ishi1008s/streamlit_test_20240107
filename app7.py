@@ -7,8 +7,6 @@ from datetime import datetime
 import pandas as pd
 from PIL import Image
 import asyncio
-from github import Github
-from io import BytesIO
 
 # タイトル
 st.title("20240106TEST")
@@ -92,30 +90,21 @@ try:
         # データベースから全データを取得
         all_data = c.execute(f'SELECT * FROM {user_name}').fetchall()
         
-        # GitHubにアップロードするための設定
-        github_token = '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'
-        repo_owner = 'k-ishi1008s'
-        repo_name = 'streamlit_test20240106'
-        upload_dir = 'data2'
-        os.makedirs(upload_dir, exist_ok=True)
-        upload_path = os.path.join(upload_dir, f'{user_name}_user_data.xlsx')
-        
-        # Excelファイルを保存
+        # DataFrameに変換
         df = pd.DataFrame(all_data, columns=['id', 'image_number', 'input_text', 'time'])
-        df.to_excel(upload_path, index=False)
         
-        # GitHubにアップロード
-        g = Github(github_token)
-        repo = g.get_user(repo_owner).get_repo(repo_name)
+        # カレントディレクトリを取得
+        current_directory = os.getcwd()
         
-        with open(upload_path, 'rb') as f:
-            content = f.read()
-            repo.create_file(upload_path, f"Uploaded from Streamlit app by {user_name}", content, branch="main")
-
-        st.success(f'データが GitHub リポジトリにアップロードされました！')
+        # 日時を取得してフォーマット
+        current_time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
         
-        # ローカルのエクセルファイルは削除する（必要に応じて）
-        os.remove(upload_path)
+        # ファイル名に日時を含めて書き込み
+        excel_filename = f'{user_name}_user_data_{current_time}.xlsx'
+        relative_filepath = os.path.join('./data', excel_filename)
+        df.to_excel(relative_filepath, index=False)
+        st.success(f'エクセルファイルが {relative_filepath} に出力されました！')
+    
 
 finally:
     # データベースクローズ
