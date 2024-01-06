@@ -9,7 +9,7 @@ from PIL import Image
 import asyncio
 
 # タイトル
-st.title("これで終わりにしよう")
+st.title("20240106TEST")
 
 # ユーザー名入力フォーム
 user_name = st.text_input('ユーザー名をアルファベットで入力してください:')
