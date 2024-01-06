@@ -93,9 +93,9 @@ try:
         all_data = c.execute(f'SELECT * FROM {user_name}').fetchall()
         
         # GitHubにアップロードするための設定
-        github_token = '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'
+        github_token = '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'
         repo_owner = 'k-ishi1008s'
-        repo_name = 'streamlit_test20240106'
+        repo_name = 'streamlit_test2024_0107'
         upload_dir = 'data2'
         os.makedirs(upload_dir, exist_ok=True)
         upload_path = os.path.join(upload_dir, f'{user_name}_user_data.xlsx')
