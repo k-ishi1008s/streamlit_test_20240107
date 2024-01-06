@@ -11,7 +11,7 @@ from github import Github
 from io import BytesIO
 
 # タイトル
-st.title("20240106TEST")
+st.title("20240106TESTねたい")
 
 # ユーザー名入力フォーム
 user_name = st.text_input('ユーザー名をアルファベットで入力してください:')
