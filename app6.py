@@ -93,7 +93,7 @@ try:
         all_data = c.execute(f'SELECT * FROM {user_name}').fetchall()
         
         # GitHubにアップロードするための設定
-        github_token = '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'
+        github_token = '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'
         repo_owner = 'k-ishi1008s'
         repo_name = 'streamlit_test_20240107'
         upload_dir = 'data2'
